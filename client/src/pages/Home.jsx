@@ -4,8 +4,8 @@ export default function Home() {
   const { userFromLocal } = useUserContext();
 
   // Use optional chaining to safely access 'name' and 'image'
-  const username = userFromLocal.name;
-  const imagePath = userFromLocal.image; // Access the relative image path from the user object
+  const username = userFromLocal?.name;
+  const imagePath = userFromLocal?.image; // Access the relative image path from the user object
 
   // Construct the full URL for the image; replace 'http://localhost:5000' with your actual backend base URL
   const imageFullUrl = imagePath ? `http://localhost:5000/${imagePath.replace(/\\/g, '/')}` : null;

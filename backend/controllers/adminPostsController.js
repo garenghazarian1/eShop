@@ -3,6 +3,9 @@ import AdminPost from "../models/adminPostModel.js";
 // ADD PRODUCT************************************************
 export const handleAdminNewPost = async (req, res) => {
     try {
+        console.log("add prod, body is", req.body)
+        console.log("add prod, file is", req.file)
+        if (req.file) req.body.productImage = req.file.filepath
         const newProduct = await(await  AdminPost.create(req.body)).populate({path: "adminName"});
         res.json({success: true, post: newProduct});
     } catch (error) {
@@ -14,6 +17,8 @@ export const handleAdminNewPost = async (req, res) => {
 // Function to handle retrieving all posts
 export const handleAdminGetAllPosts = async (req, res) => {
     try {
+
+
         const posts = await AdminPost.find({});
         
         res.status(200).json({ success: true, posts });

@@ -3,7 +3,7 @@ import { useAdminContext } from '../context/adminContext.jsx';
 import { inputField, button } from "../css/style";
 
 function AdminPostForm() {
-  const {handleProductSubmit, productName, cultureType, productPrice, handleNameChange, handleCultureTypeChange, handleProductPriceChange, handleProductImageChange, previewProductUrl, setPreviewProductUrl} = useProductContext();
+  const {handleProductSubmit, productName, cultureType, productPrice, handleNameChange, handleCultureTypeChange, handleProductPriceChange,   handleImageSelect,productImage} = useProductContext();
 
   //const {name} = useAdminContext();
   //console.log('name', name);
@@ -46,15 +46,12 @@ function AdminPostForm() {
             type="file"
             name="productImage"
             hidden
-            onChange={handleProductImageChange}
+            onChange={handleImageSelect}
             accept="image/*"
           />
         </label>
       </div>
-      {previewProductUrl && (
-        <img src={previewProductUrl} alt="Profile preview" className="h-24 " />
-
-      )}
+      <img src={productImage && URL.createObjectURL(productImage)}  className="h-24 " />
     </div>
 
 
